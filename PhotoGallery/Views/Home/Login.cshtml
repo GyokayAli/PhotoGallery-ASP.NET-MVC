@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Login Page";
+}
+
+@using (Html.BeginForm("Login", "Home", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        Username: <input type="text" id="username" name="username"/>
+        Password: <input type="password" id="pass" name="pass"/>
+        <input type="submit" class="btn" value="Login"/>
+    </fieldset>
+}
+
+

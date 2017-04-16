@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Registration";
+}
+
+@using (Html.BeginForm("Login", "Home", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        Username: <input type="text" id="username" name="username" />
+        Email: <input type="email" id="email" name="email" />
+        Password: <input type="password" id="pass" name="pass" />
+        Confirm password: <input type="password" id="confirmPass" name="confirmPass"/>
+        <input type="submit" class="btn" value="Create account" />
+    </fieldset>
+}

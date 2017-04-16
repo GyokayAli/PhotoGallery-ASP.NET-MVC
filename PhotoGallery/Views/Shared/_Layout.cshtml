@@ -23,11 +23,11 @@ Licence URI: http://www.os-templates.com/template-terms
                 <ul class="nospace inline pushright">
                     <li>
                         <span class="fa fa-user"></span>
-                        <strong><a href="#" title="Register">Register</a></strong>
+                        <strong>@Html.ActionLink("Register", "Register", "Home")</strong>
                     </li>
                     <li>
                         <span class="fa fa-sign-in"></span>
-                        <strong><a href="#" title="Login">Login</a></strong>
+                        <strong>@Html.ActionLink("Login", "Login", "Home")</strong>
                     </li>
                 </ul>
             </div>
@@ -65,7 +65,7 @@ Licence URI: http://www.os-templates.com/template-terms
     <!-- ################################################################################################ -->
     <div class="wrapper row5">
         <div id="copyright" class="hoc clear">
-            <p class="fl_left">&copy; @DateTime.Now.Year - All Rights Reserved - <a href="index.html">The Photo Gallery</a></p>
+            <p class="fl_left">&copy; @DateTime.Now.Year - All Rights Reserved - @Html.ActionLink("The Photo Gallery", "Index", "Home")</p>
             <p class="fl_right">Design by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
         </div>
     </div>
