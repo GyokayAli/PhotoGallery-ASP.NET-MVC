@@ -8,11 +8,12 @@ namespace PhotoGallery.Controllers
 {
     public class HomeController : Controller
     {
+        PhotoGalleryContext dbContext = new PhotoGalleryContext();
+
         public ActionResult Index()
         {
             return View();
         }
-
 
         public ActionResult Gallery()
         {
@@ -28,11 +29,24 @@ namespace PhotoGallery.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult Register()
         {
-            ViewBag.Message = "Register";
-
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Register(Users user)
+        {
+            if (ModelState.IsValid)
+            {
+                dbContext.Users.Add(user);
+                dbContext.SaveChanges();
+                
+                return RedirectToAction("Index");
+            }
+
+            return View(user);
         }
     }
 }

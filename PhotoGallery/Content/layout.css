@@ -71,7 +71,7 @@ File: Layout CSS
 .elements .txtwrap p:last-child{margin-bottom:0;}
 .elements .txtwrap footer{}
 
-/* Comments */
+/* comments */
 #comments ul{margin:0 0 40px 0; padding:0; list-style:none;}
 #comments li{margin:0 0 10px 0; padding:15px;}
 #comments .avatar{float:right; margin:0 0 10px 10px; padding:3px; border:1px solid;}
@@ -314,7 +314,7 @@ article:hover .icon::after{border-color:#82B440;}
 #backtotop{color:#FFFFFF; background-color:#82B440;}
 
 
-/* Tables + Comments */
+/* Tables + comments */
 table, th, td, #comments .avatar, #comments input, #comments textarea{border-color:#D7D7D7;}
 #comments input:focus, #comments textarea:focus, #comments *:required:focus{border-color:#82B440;}
 th{color:#FFFFFF; background-color:#373737;}
