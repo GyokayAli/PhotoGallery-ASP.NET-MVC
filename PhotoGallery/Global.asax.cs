@@ -16,6 +16,9 @@ namespace PhotoGallery
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            //AutoMapper config
+            Infrastructure.AutoMapperConfig.RegisterMappings();
         }
     }
 }
