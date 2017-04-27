@@ -12,20 +12,18 @@ namespace DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class Users
+    public partial class Category
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Users()
+        public Category()
         {
-            this.Album = new HashSet<Album>();
+            this.Albums = new HashSet<Album>();
         }
-
+    
         public int ID { get; set; }
-        public string USERNAME { get; set; }
-        public string EMAIL { get; set; }
-        public string PASS { get; set; }
-
+        public string CATEGORY_NAME { get; set; }
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Album> Album { get; set; }
+        public virtual ICollection<Album> Albums { get; set; }
     }
 }

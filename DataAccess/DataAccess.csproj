@@ -49,56 +49,62 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Album.cs">
-      <DependentUpon>PhotoGalleryEntity.tt</DependentUpon>
+      <DependentUpon>PhotoGalleryEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Category.cs">
+      <DependentUpon>PhotoGalleryEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Comment.cs">
+      <DependentUpon>PhotoGalleryEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="GenericRepository\GenericRepository.cs" />
     <Compile Include="Photo.cs">
-      <DependentUpon>PhotoGalleryEntity.tt</DependentUpon>
+      <DependentUpon>PhotoGalleryEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="PhotoGalleryEntity.Context.cs">
+    <Compile Include="PhotoGalleryEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PhotoGalleryEntity.Context.tt</DependentUpon>
+      <DependentUpon>PhotoGalleryEntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="PhotoGalleryEntity.cs">
+    <Compile Include="PhotoGalleryEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PhotoGalleryEntity.tt</DependentUpon>
+      <DependentUpon>PhotoGalleryEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="PhotoGalleryEntity.Designer.cs">
+    <Compile Include="PhotoGalleryEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PhotoGalleryEntity.edmx</DependentUpon>
+      <DependentUpon>PhotoGalleryEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Users.cs">
-      <DependentUpon>PhotoGalleryEntity.tt</DependentUpon>
+    <Compile Include="User.cs">
+      <DependentUpon>PhotoGalleryEntities.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
     <None Include="packages.config" />
-    <EntityDeploy Include="PhotoGalleryEntity.edmx">
+    <EntityDeploy Include="PhotoGalleryEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>PhotoGalleryEntity.Designer.cs</LastGenOutput>
+      <LastGenOutput>PhotoGalleryEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="PhotoGalleryEntity.edmx.diagram">
-      <DependentUpon>PhotoGalleryEntity.edmx</DependentUpon>
+    <None Include="PhotoGalleryEntities.edmx.diagram">
+      <DependentUpon>PhotoGalleryEntities.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="PhotoGalleryEntity.Context.tt">
+    <Content Include="PhotoGalleryEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PhotoGalleryEntity.edmx</DependentUpon>
-      <LastGenOutput>PhotoGalleryEntity.Context.cs</LastGenOutput>
+      <DependentUpon>PhotoGalleryEntities.edmx</DependentUpon>
+      <LastGenOutput>PhotoGalleryEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="PhotoGalleryEntity.tt">
+    <Content Include="PhotoGalleryEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PhotoGalleryEntity.edmx</DependentUpon>
-      <LastGenOutput>PhotoGalleryEntity.cs</LastGenOutput>
+      <DependentUpon>PhotoGalleryEntities.edmx</DependentUpon>
+      <LastGenOutput>PhotoGalleryEntities.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,5 +1,7 @@
 ﻿using Common.DTO;
+using DataAccess;
 using Infrastructure.IServices;
+using PhotoGallery.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -9,7 +11,6 @@ using static PhotoGallery.Models.AccountViewModel;
 
 namespace PhotoGallery.Controllers
 {
-    [Authorize]
     public class AccountController : Controller
     {
         private IUserService _userService;
@@ -44,7 +45,7 @@ namespace PhotoGallery.Controllers
             {
                 var users = _userService.GetAllUsers();
 
-                var userExists = users.Any(x => x.Username == model.Username && x.Password == model.Password);
+                var userExists = users.Any(x => x.Email == model.Email && x.Password == model.Password);
 
                 if (userExists)
                 {
@@ -76,7 +77,8 @@ namespace PhotoGallery.Controllers
             {
                 _userService.InsertUser(new UserDTO
                 {
-                    Username = model.Username,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
                     Email = model.Email,
                     Password = model.Password
                 });

@@ -10,11 +10,11 @@
 
     public class UserService : IUserService
     {
-        private GenericRepository<Users> _repo;
+        private GenericRepository<User> _repo;
 
         public UserService()
         {
-            _repo = new GenericRepository<Users>();
+            _repo = new GenericRepository<User>();
         }
         
         public List<UserDTO> GetAllUsers()
@@ -27,10 +27,11 @@
 
         public void InsertUser(UserDTO dto)
         {
-            Users entity = new Users()
+            var entity = new User()
             {
                 ID = dto.Id,
-                USERNAME = dto.Username,
+                FIRST_NAME = dto.FirstName,
+                LAST_NAME = dto.LastName,
                 EMAIL = dto.Email,
                 PASS = dto.Password,
             };

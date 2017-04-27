@@ -5,17 +5,17 @@
 
     public class GenericRepository<T> : DbSet<T> where T : class
     {
-        private PhotoGalleryContext _dbContext;
+        private PhotoGalleryEntities _dbContext;
 
         private DbSet<T> _dbSet;
 
         public GenericRepository()
         {
-            _dbContext = new PhotoGalleryContext();
+            _dbContext = new PhotoGalleryEntities();
             _dbSet = _dbContext.Set<T>();
         }
 
-        public GenericRepository(PhotoGalleryContext dbContext)
+        public GenericRepository(PhotoGalleryEntities dbContext)
         {
             _dbContext = dbContext;
             _dbSet = _dbContext.Set<T>();

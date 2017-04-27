@@ -13,10 +13,10 @@ namespace DataAccess
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class PhotoGalleryContext : DbContext
+    public partial class PhotoGalleryEntities : DbContext
     {
-        public PhotoGalleryContext()
-            : base("name=PhotoGalleryContext")
+        public PhotoGalleryEntities()
+            : base("name=PhotoGalleryEntities")
         {
         }
     
@@ -25,8 +25,10 @@ namespace DataAccess
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Album> Album { get; set; }
-        public virtual DbSet<Photo> Photo { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Album> Albums { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Comment> Comments { get; set; }
+        public virtual DbSet<Photo> Photos { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataAccess;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,13 +11,6 @@ namespace PhotoGallery.Controllers
     {
         public ActionResult Index()
         {
-            return View();
-        }
-
-        public ActionResult Gallery()
-        {
-            ViewBag.Message = "Your gallery page.";
-            
             return View();
         }
     }
