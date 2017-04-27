@@ -40,6 +40,7 @@ namespace PhotoGallery.App_Start
             // TODO: Register your types here
             // container.RegisterType<IProductRepository, ProductRepository>();
             container.RegisterType<IUserService, UserService>();
+            container.RegisterType<IAlbumService, AlbumService>();
         }
     }
 }

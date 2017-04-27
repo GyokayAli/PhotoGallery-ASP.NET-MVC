@@ -12,7 +12,7 @@ namespace PhotoGallery.Models
     {
         PhotoGalleryEntities db = new PhotoGalleryEntities();
 
-        public int DDLCategoryId { get; set; }
+        public int CategoryItemId { get; set; }
         public IEnumerable<SelectListItem> Categories
         {
             get

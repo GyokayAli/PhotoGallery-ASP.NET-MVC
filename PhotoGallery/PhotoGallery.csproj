@@ -173,8 +173,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModel.cs" />
-    <Compile Include="Models\AlbumCreateViewModel.cs" />
     <Compile Include="Models\CategoryList.cs" />
+    <Compile Include="Models\GalleryViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -251,7 +251,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Gallery\AllAlbums.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Account\GetUsers.cshtml" />
@@ -259,6 +258,7 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Gallery\_GetCategories.cshtml" />
     <Content Include="Views\Gallery\CreateAlbum.cshtml" />
+    <Content Include="Views\Gallery\AllAlbums.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

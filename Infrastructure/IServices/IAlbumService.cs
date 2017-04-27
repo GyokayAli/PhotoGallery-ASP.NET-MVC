@@ -3,10 +3,10 @@
     using Common.DTO;
     using System.Collections.Generic;
 
-    public interface IUserService
+    public interface IAlbumService
     {
-        List<UserDTO> GetAllUsers();
+        List<AlbumDTO> GetAllAlbums();
 
-        void InsertUser(UserDTO dto);
+        void InsertAlbum(AlbumDTO dto);
     }
 }

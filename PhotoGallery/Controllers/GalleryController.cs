@@ -1,20 +1,32 @@
-﻿using DataAccess;
+﻿using Common.DTO;
+using DataAccess;
+using Infrastructure.IServices;
 using PhotoGallery.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using static PhotoGallery.Models.GalleryViewModel;
 
 namespace PhotoGallery.Controllers
 {
     public class GalleryController : Controller
     {
+        private IAlbumService _albumService;
+        public GalleryController(IAlbumService albumService)
+        {
+            _albumService = albumService;
+        }
+
         // GET: Gallery/AllAlbums
         public ActionResult AllAlbums()
         {
-            return View();
+            var albums = _albumService.GetAllAlbums();
+
+            return View(albums);
         }
 
         [ChildActionOnly]
@@ -23,29 +35,33 @@ namespace PhotoGallery.Controllers
             return PartialView(new CategoryList());
         }
 
-        [HttpGet]
+        //
+        // GET: Gallery/CreateAlbum
         public ActionResult CreateAlbum()
         {
             return View();
         }
 
+        //
+        // POST: Gallery/CreateAlbum
         [HttpPost]
-        public ActionResult CreateAlbum(AlbumCreateViewModel model)
+        public ActionResult CreateAlbum(AlbumCreateViewModel model, HttpPostedFileBase file)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && file != null && file.ContentLength > 0)
             {
-                var db = new PhotoGalleryEntities();
-
-                db.Albums.Add(new Album()
+                MemoryStream fileContent = new MemoryStream();
+                file.InputStream.CopyTo(fileContent);
+                
+                _albumService.InsertAlbum(new AlbumDTO
                 {
-                    ALBUM_NAME = model.AlbumName,
-                    ALBUM_IMG = Encoding.ASCII.GetBytes(model.AlbumImage),
-                    USER_ID = model.UserId,
-                    CATEGORY_ID = model.CategoryId
+                    AlbumName = model.AlbumName,
+                    AlbumImage = fileContent.ToArray(),
+                    UserId = model.UserId,
+                    CategoryId = model.CategoryId
                 });
-                db.SaveChanges();
+                return RedirectToAction("AllAlbums", "Gallery");
             }
-            return View();
+            return View(model);
         }
     }
 }
