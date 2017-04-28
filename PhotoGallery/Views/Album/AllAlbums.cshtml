@@ -1,55 +1,71 @@
 ﻿@model PhotoGallery.Models.GalleryViewModel.AlbumSearchViewModel
 
 @{
-    ViewBag.Title = "All Albums";
+    ViewBag.Title = "Albums";
 }
 
 <div id="gallery">
     <figure>
-        <header class="heading">All Albums</header>
+        <header class="heading">Albums</header>
 
         @using (Html.BeginForm())
         {
             <div class="form-horizontal">
                 <hr />
                 <div class="form-group">
-                    @Html.LabelFor(model => model.SearchWord, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.SearchWord, new { htmlAttributes = new { @class = "form-control" } })
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.SearchWord, new { htmlAttributes = new { @class = "form-control", @placeholder = "Search for album..." }})
                     </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                    <div class="col-md-3">
                         @Html.Partial("_GetCategories", new PhotoGallery.Models.CategoryList())
                         @Html.HiddenFor(model => model.CategoryId, new { htmlAttributes = new { @class = "form-control" } })
                     </div>
-                </div>
-                
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Search" class="btn btn-default" />
+                    <div class="col-md-offset-2 col-md-2 pull-right">
+                        <input type="submit" value="Search" style="none;" class="form-control" />
                     </div>
                 </div>
             </div>
         }
-        <ul class="nospace clear">
-            @foreach (var item in Model.SearchResults.Select((value, i) => new { i, value }))
-            {
-                var value = item.value;
-                var index = item.i;
+        <div class="group center">
+            <ul class="nospace elements">
+                @foreach (var item in Model.SearchResults.Select((value, i) => new { i, value }))
+                {
+                    var value = item.value;
+                    var index = item.i;
 
-                if (index % 4 == 0)
-                {
-                    <li class="one_quarter first"><a href="#"><img src="data:image;base64,@System.Convert.ToBase64String(value.AlbumImage)" title="@value.AlbumName" /></a></li>
+                    if (index % 4 == 0)
+                    {
+                        <li class="one_quarter first">
+                            <article>
+                                <figure>
+                                    <img src="data:image;base64,@System.Convert.ToBase64String(value.AlbumImage)" title="@value.AlbumName" />
+                                    <figcaption><a href="@value.Id">View album &raquo;</a></figcaption>
+                                </figure>
+                                <div class="txtwrap">
+                                    <h6 class="heading">@value.AlbumName</h6>
+                                    <p>Uploaded by ...</p>
+                                </div>
+                            </article>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="one_quarter">
+                            <article>
+                                <figure>
+                                    <img src="data:image;base64,@System.Convert.ToBase64String(value.AlbumImage)" title="@value.AlbumName" />
+                                    <figcaption><a href="@value.Id">View album &raquo;</a></figcaption>
+                                </figure>
+                                <div class="txtwrap">
+                                    <h6 class="heading">@value.AlbumName</h6>
+                                    <p>Uploaded by ...</p>
+                                </div>
+                            </article>
+                        </li>
+                    }
                 }
-                else
-                {
-                    <li class="one_quarter"><a href="#"><img src="data:image;base64,@System.Convert.ToBase64String(value.AlbumImage)" title="@value.AlbumName" /></a></li>
-                }
-            }
-        </ul>
+            </ul>
+        </div>
     </figure>
 </div>
 

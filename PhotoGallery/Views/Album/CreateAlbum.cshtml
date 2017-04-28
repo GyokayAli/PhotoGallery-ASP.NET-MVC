@@ -13,34 +13,32 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.AlbumName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @Html.LabelFor(model => model.AlbumName, htmlAttributes: new { @class = "control-label col-sm-2" })
+            <div class="col-sm-5">
                 @Html.EditorFor(model => model.AlbumName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.AlbumName, "", new { @class = "text-danger" })
+            </div>
+
+            @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label col-sm-2" })
+            <div class="col-sm-3">
+                @Html.Partial("_GetCategories", new PhotoGallery.Models.CategoryList())
+                @Html.HiddenFor(model => model.CategoryId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            <label for="file" class="control-label col-md-2">Album Photo</label>
-            <div class="col-md-10">
+            <label for="file" class="control-label col-sm-2">Album Cover Photo</label>
+            <div class="col-sm-4">
                 <input type="file" name="file" id="file" />
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-sm-2" })
+            <div class="col-sm-4">
                 @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.Partial("_GetCategories", new PhotoGallery.Models.CategoryList())
-                @Html.HiddenFor(model => model.CategoryId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
             </div>
         </div>
 

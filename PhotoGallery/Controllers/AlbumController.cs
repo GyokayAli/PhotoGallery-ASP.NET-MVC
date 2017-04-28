@@ -33,20 +33,31 @@ namespace PhotoGallery.Controllers
         [HttpPost]
         public ActionResult AllAlbums(AlbumSearchViewModel model)
         {
-
             var albums = _albumService.GetAllAlbums();
+            var resultList = new List<AlbumDTO>();
 
             if (!string.IsNullOrWhiteSpace(model.SearchWord))
             {
-                albums = albums.Where(b => b.AlbumName.ToLower().Contains(model.SearchWord.ToLower())).ToList();
-            }
+                resultList = albums.Where(b => b.AlbumName.ToLower().Contains(model.SearchWord.ToLower())).ToList();
 
-            if (model.CategoryId > 0)
+                //check if should filter by category
+                if (model.CategoryId > 0)
+                {
+                    model.SearchResults = resultList.Where(x => x.CategoryId == model.CategoryId).ToList();
+                }
+                else
+                    model.SearchResults = resultList;
+            }
+            else
             {
-                albums = albums.Where(x => x.CategoryId == model.CategoryId).ToList();
+                //check if should filter by category
+                if (model.CategoryId > 0)
+                {
+                    model.SearchResults = albums.Where(x => x.CategoryId == model.CategoryId).ToList();
+                }
+                else
+                    model.SearchResults = _albumService.GetAllAlbums();
             }
-
-            model.SearchResults = albums;
 
             return View(model);
         }

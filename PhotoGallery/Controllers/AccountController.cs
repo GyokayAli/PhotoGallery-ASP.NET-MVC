@@ -2,9 +2,12 @@
 using DataAccess;
 using Infrastructure.IServices;
 using PhotoGallery.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using static PhotoGallery.Models.AccountViewModel;
@@ -45,7 +48,7 @@ namespace PhotoGallery.Controllers
             {
                 var users = _userService.GetAllUsers();
 
-                var userExists = users.Any(x => x.Email == model.Email && x.Password == model.Password);
+                var userExists = users.Any(x => x.Email == model.Email && x.Password == Hash(model.Password));
 
                 if (userExists)
                 {
@@ -80,7 +83,7 @@ namespace PhotoGallery.Controllers
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     Email = model.Email,
-                    Password = model.Password
+                    Password = Hash(model.Password)
                 });
                 return RedirectToAction("Login", "Account");
             }
@@ -99,6 +102,18 @@ namespace PhotoGallery.Controllers
             // destroy cookies!
 
             return RedirectToAction("Index", "Home");
+        }
+
+        // Helper to hash user password
+        public string Hash(string password)
+        {
+            var bytes = new UTF8Encoding().GetBytes(password);
+            byte[] hashBytes;
+            using (var algorithm = new SHA256Managed())
+            {
+                hashBytes = algorithm.ComputeHash(bytes);
+            }
+            return Convert.ToBase64String(hashBytes);
         }
     }
 }
