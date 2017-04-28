@@ -24,10 +24,18 @@
                 .ToList());
         }
 
+        public List<AlbumDTO> GetLatestAlbums(int n)
+        {
+            return AutoMapper.Mapper
+                .Map<List<AlbumDTO>>(_repo
+                .GetAllRecords()
+                .OrderByDescending(x => x.ID)
+                .Take(n)
+                .ToList());
+        }
+
         public void InsertAlbum(AlbumDTO dto)
         {
-            //var entity = AutoMapper.Mapper.Map<Album>(dto);
-
             var entity = new Album()
             {
                 ID = dto.Id,

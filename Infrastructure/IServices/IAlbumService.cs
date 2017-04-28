@@ -7,6 +7,8 @@
     {
         List<AlbumDTO> GetAllAlbums();
 
+        List<AlbumDTO> GetLatestAlbums(int n);
+
         void InsertAlbum(AlbumDTO dto);
     }
 }

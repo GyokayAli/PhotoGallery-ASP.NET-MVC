@@ -13,15 +13,15 @@ using static PhotoGallery.Models.GalleryViewModel;
 
 namespace PhotoGallery.Controllers
 {
-    public class GalleryController : Controller
+    public class AlbumController : Controller
     {
         private IAlbumService _albumService;
-        public GalleryController(IAlbumService albumService)
+        public AlbumController(IAlbumService albumService)
         {
             _albumService = albumService;
         }
 
-        // GET: Gallery/AllAlbums
+        // GET: Album/AllAlbums
         public ActionResult AllAlbums()
         {
             var albums = _albumService.GetAllAlbums();
@@ -36,14 +36,14 @@ namespace PhotoGallery.Controllers
         }
 
         //
-        // GET: Gallery/CreateAlbum
+        // GET: Album/CreateAlbum
         public ActionResult CreateAlbum()
         {
             return View();
         }
 
         //
-        // POST: Gallery/CreateAlbum
+        // POST: Album/CreateAlbum
         [HttpPost]
         public ActionResult CreateAlbum(AlbumCreateViewModel model, HttpPostedFileBase file)
         {
