@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Common.DTO;
+using Infrastructure.IServices;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,6 +10,7 @@ namespace PhotoGallery.Models
 {
     public class GalleryViewModel
     {
+
         public class AlbumCreateViewModel
         {
             [Required]
@@ -30,6 +33,22 @@ namespace PhotoGallery.Models
 
             [Display(Name = "Album Image")]
             public byte[] AlbumImage { get; set; }
+        }
+
+        public class AlbumSearchViewModel
+        {
+            [Display(Name = "Search")]
+            public string SearchWord { get; set; }
+
+            [Display(Name = "Category")]
+            public int CategoryId { get; set; }
+
+            public List<AlbumDTO> SearchResults { get; set; }
+
+            public AlbumSearchViewModel()
+            {
+                SearchResults = new List<AlbumDTO>();
+            }
         }
     }
 }

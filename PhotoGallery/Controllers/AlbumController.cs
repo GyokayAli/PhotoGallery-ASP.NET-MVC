@@ -24,9 +24,31 @@ namespace PhotoGallery.Controllers
         // GET: Album/AllAlbums
         public ActionResult AllAlbums()
         {
+            var model = new AlbumSearchViewModel();
+            model.SearchResults = _albumService.GetAllAlbums();
+            return View(model);
+        }
+
+        // POST: Album/AllAlbums
+        [HttpPost]
+        public ActionResult AllAlbums(AlbumSearchViewModel model)
+        {
+
             var albums = _albumService.GetAllAlbums();
 
-            return View(albums);
+            if (!string.IsNullOrWhiteSpace(model.SearchWord))
+            {
+                albums = albums.Where(b => b.AlbumName.ToLower().Contains(model.SearchWord.ToLower())).ToList();
+            }
+
+            if (model.CategoryId > 0)
+            {
+                albums = albums.Where(x => x.CategoryId == model.CategoryId).ToList();
+            }
+
+            model.SearchResults = albums;
+
+            return View(model);
         }
 
         [ChildActionOnly]
@@ -51,7 +73,7 @@ namespace PhotoGallery.Controllers
             {
                 MemoryStream fileContent = new MemoryStream();
                 file.InputStream.CopyTo(fileContent);
-                
+
                 _albumService.InsertAlbum(new AlbumDTO
                 {
                     AlbumName = model.AlbumName,
