@@ -9,6 +9,8 @@
 
         List<AlbumDTO> GetLatestAlbums(int n);
 
+        AlbumDTO GetAlbum(int id);
+
         void InsertAlbum(AlbumDTO dto);
     }
 }

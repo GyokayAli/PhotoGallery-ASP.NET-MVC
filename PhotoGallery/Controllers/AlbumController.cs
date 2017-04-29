@@ -16,9 +16,14 @@ namespace PhotoGallery.Controllers
     public class AlbumController : Controller
     {
         private IAlbumService _albumService;
-        public AlbumController(IAlbumService albumService)
+        private IUserService _userService;
+        private IPhotoService _photoService;
+
+        public AlbumController(IAlbumService albumService, IUserService userService, IPhotoService photoService)
         {
             _albumService = albumService;
+            _userService = userService;
+            _photoService = photoService;
         }
 
         // GET: Album/AllAlbums
@@ -34,30 +39,18 @@ namespace PhotoGallery.Controllers
         public ActionResult AllAlbums(AlbumSearchViewModel model)
         {
             var albums = _albumService.GetAllAlbums();
-            var resultList = new List<AlbumDTO>();
 
             if (!string.IsNullOrWhiteSpace(model.SearchWord))
             {
-                resultList = albums.Where(b => b.AlbumName.ToLower().Contains(model.SearchWord.ToLower())).ToList();
+                albums = albums.Where(b => b.AlbumName.ToLower().Contains(model.SearchWord.ToLower())).ToList();
+            }
 
-                //check if should filter by category
-                if (model.CategoryId > 0)
-                {
-                    model.SearchResults = resultList.Where(x => x.CategoryId == model.CategoryId).ToList();
-                }
-                else
-                    model.SearchResults = resultList;
-            }
-            else
+            if (model.CategoryId > 0)
             {
-                //check if should filter by category
-                if (model.CategoryId > 0)
-                {
-                    model.SearchResults = albums.Where(x => x.CategoryId == model.CategoryId).ToList();
-                }
-                else
-                    model.SearchResults = _albumService.GetAllAlbums();
+                albums = albums.Where(x => x.CategoryId == model.CategoryId).ToList();
             }
+
+            model.SearchResults = albums;
 
             return View(model);
         }
@@ -70,9 +63,45 @@ namespace PhotoGallery.Controllers
 
         //
         // GET: Album/CreateAlbum
+        public ActionResult MyAlbums()
+        {
+
+            if (Session["User"] != null)
+            {
+                var currentUser = this.Session["User"] as UserDTO;
+                var userId = currentUser.Id;
+
+                var model = new AlbumSearchViewModel();
+                model.SearchResults = _albumService.GetAllAlbums().Where(x => x.UserId == userId).ToList();
+
+                return View(model);
+            }
+            else
+                return RedirectToAction("Login", "Account");
+        }
+
+        // POST: Album/AllAlbums
+        [HttpPost]
+        public ActionResult MyAlbums(AlbumSearchViewModel model)
+        {
+            var currentUser = this.Session["User"] as UserDTO;
+            var userId = currentUser.Id;
+
+            var albums = _albumService.GetAllAlbums().Where(x => x.UserId == userId).ToList();
+
+            model.SearchResults = albums;
+
+            return View(model);
+        }
+
+        //
+        // GET: Album/CreateAlbum
         public ActionResult CreateAlbum()
         {
-            return View();
+            if (Session["User"] != null)
+                return View();
+            else
+                return RedirectToAction("Login", "Account");
         }
 
         //
@@ -82,6 +111,8 @@ namespace PhotoGallery.Controllers
         {
             if (ModelState.IsValid && file != null && file.ContentLength > 0)
             {
+                var currentUser = Session["User"] as UserDTO;
+
                 MemoryStream fileContent = new MemoryStream();
                 file.InputStream.CopyTo(fileContent);
 
@@ -89,11 +120,31 @@ namespace PhotoGallery.Controllers
                 {
                     AlbumName = model.AlbumName,
                     AlbumImage = fileContent.ToArray(),
-                    UserId = model.UserId,
+                    UserId = currentUser.Id,
                     CategoryId = model.CategoryId
                 });
-                return RedirectToAction("AllAlbums", "Gallery");
+                return RedirectToAction("AllAlbums", "Album");
             }
+            return View(model);
+        }
+
+        //
+        // GET: Album/Details
+        public ActionResult Details(int id)
+        {
+            var album = _albumService.GetAlbum(id);
+            var user = _userService.GetUserById(album.UserId);
+            var photos = _photoService.GetAllAlbumPhotos(album.Id);
+
+            var model = new AlbumDetailsViewModel()
+            {
+                Id = album.Id,
+                AlbumName = album.AlbumName,
+                AlbumImage = album.AlbumImage,
+                UserDetails = user,
+                Photos = photos
+            };
+
             return View(model);
         }
     }

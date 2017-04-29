@@ -22,14 +22,7 @@ Licence URI: http://www.os-templates.com/template-terms
         <div id="topbar" class="hoc clear">
             <div class="fl_right">
                 <ul class="nospace inline pushright">
-                    <li>
-                        <span class="fa fa-user"></span>
-                        <strong>@Html.ActionLink("Register", "Register", "Account")</strong>
-                    </li>
-                    <li>
-                        <span class="fa fa-sign-in"></span>
-                        <strong>@Html.ActionLink("Login", "Login", "Account")</strong>
-                    </li>
+                    @Html.Partial("_LoginPartial")
                 </ul>
             </div>
         </div>
@@ -51,6 +44,7 @@ Licence URI: http://www.os-templates.com/template-terms
             <ul class="clear">
                 <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
                 <li>@Html.ActionLink("Gallery", "AllAlbums", "Album")</li>
+                <li>@Html.ActionLink("My Albums", "MyAlbums", "Album")</li>
                 <li>@Html.ActionLink("New Album", "CreateAlbum", "Album")</li>
             </ul>
         </nav>

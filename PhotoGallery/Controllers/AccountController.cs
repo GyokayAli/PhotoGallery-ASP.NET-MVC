@@ -22,13 +22,6 @@ namespace PhotoGallery.Controllers
             _userService = userService;
         }
 
-        [HttpGet]
-        public ActionResult GetUsers()
-        {
-            var users = _userService.GetAllUsers().ToList();
-            return View(users);
-        }
-
         //
         // GET: /Account/Login
         [AllowAnonymous]
@@ -49,10 +42,13 @@ namespace PhotoGallery.Controllers
                 var users = _userService.GetAllUsers();
 
                 var userExists = users.Any(x => x.Email == model.Email && x.Password == Hash(model.Password));
+                var currentUser = _userService.GetUserByEmail(model.Email);
 
                 if (userExists)
                 {
-                    return RedirectToAction("GetUsers", "Account");
+                    Session["User"] = currentUser;
+                    
+                    return RedirectToAction("MyAlbums", "Album");
                 }
 
                 ModelState.AddModelError("", "Invalid username or password.");
@@ -92,14 +88,9 @@ namespace PhotoGallery.Controllers
             return View(model);
         }
 
-        //
-        // POST: /Account/LogOff
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            // TO DO
-            // destroy cookies!
+            Session["User"] = null;
 
             return RedirectToAction("Index", "Home");
         }

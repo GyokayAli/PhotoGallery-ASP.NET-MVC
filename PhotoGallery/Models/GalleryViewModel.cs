@@ -1,4 +1,5 @@
 ﻿using Common.DTO;
+using DataAccess;
 using Infrastructure.IServices;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,6 @@ namespace PhotoGallery.Models
 {
     public class GalleryViewModel
     {
-
         public class AlbumCreateViewModel
         {
             [Required]
@@ -49,6 +49,15 @@ namespace PhotoGallery.Models
             {
                 SearchResults = new List<AlbumDTO>();
             }
+        }
+
+        public class AlbumDetailsViewModel
+        {
+            public int Id { get; set; }
+            public string AlbumName { get; set; }
+            public byte[] AlbumImage { get; set; }
+            public UserDTO UserDetails { get; set; }
+            public List<PhotoDTO> Photos { get; set; }
         }
     }
 }

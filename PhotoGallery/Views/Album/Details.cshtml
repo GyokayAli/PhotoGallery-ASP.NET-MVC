@@ -1,0 +1,24 @@
+﻿@model PhotoGallery.Models.GalleryViewModel.AlbumDetailsViewModel
+
+@{
+    ViewBag.Title = "Album Details Page";
+}
+
+<div id="comments">
+    <div class="one_third first">
+        <img src="data:image;base64,@System.Convert.ToBase64String(Model.AlbumImage)" />
+    </div>
+    <div class="one_third">
+        <h3>Uploaded by:</h3> <p> @Model.UserDetails.FirstName @Model.UserDetails.LastName</p>
+        <h3>Email:</h3> <p>@Model.UserDetails.Email</p>
+    </div>
+    <div class="one_third">
+        <h3 style="padding-bottom:-5px">Album name:</h3> <p>@Model.AlbumName</p>
+    </div>
+</div>
+
+<style>
+    h3 {
+        color: #394251;
+    }
+</style>

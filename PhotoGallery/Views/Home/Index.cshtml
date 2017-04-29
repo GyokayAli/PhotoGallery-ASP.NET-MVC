@@ -19,11 +19,10 @@
                     <article>
                         <figure>
                             <img src="data:image;base64,@System.Convert.ToBase64String(value.AlbumImage)" title="@value.AlbumName" />
-                            <figcaption><a href="@value.Id">View album &raquo;</a></figcaption>
+                            <figcaption><a href="~/Album/Details/@value.Id">View album >></a></figcaption>
                         </figure>
                         <div class="txtwrap">
                             <h6 class="heading">@value.AlbumName</h6>
-                            <p>Uploaded by ...</p>
                         </div>
                     </article>
                 </li>
@@ -34,11 +33,10 @@
                     <article>
                         <figure>
                             <img src="data:image;base64,@System.Convert.ToBase64String(value.AlbumImage)" title="@value.AlbumName" />
-                            <figcaption><a href="@value.Id">View album &raquo;</a></figcaption>
+                            <figcaption><a href="~/Album/Details/@value.Id">View album >></a></figcaption>
                         </figure>
                         <div class="txtwrap">
                             <h6 class="heading">@value.AlbumName</h6>
-                            <p>Uploaded by ...</p>
                         </div>
                     </article>
                 </li>

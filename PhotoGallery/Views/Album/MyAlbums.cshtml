@@ -1,31 +1,13 @@
 ﻿@model PhotoGallery.Models.GalleryViewModel.AlbumSearchViewModel
 
 @{
-    ViewBag.Title = "Albums";
+    ViewBag.Title = "My Albums";
 }
 
 <div id="gallery">
     <figure>
-        <header class="heading">Albums</header>
-
-        @using (Html.BeginForm())
-        {
-            <div class="form-horizontal">
-                <hr />
-                <div class="form-group">
-                    <div class="col-md-5">
-                        @Html.EditorFor(model => model.SearchWord, new { htmlAttributes = new { @class = "form-control", @placeholder = "Search for album..." }})
-                    </div>
-                    <div class="col-md-3">
-                        @Html.Partial("_GetCategories", new PhotoGallery.Models.CategoryList())
-                        @Html.HiddenFor(model => model.CategoryId, new { htmlAttributes = new { @class = "form-control" } })
-                    </div>
-                    <div class="col-md-offset-2 col-md-2 pull-right">
-                        <input type="submit" value="Search" style="none;" class="form-control" />
-                    </div>
-                </div>
-            </div>
-        }
+        <header class="heading">My Albums</header>
+        
         <div class="group center">
             <ul class="nospace elements">
                 @foreach (var item in Model.SearchResults.Select((value, i) => new { i, value }))
@@ -88,10 +70,3 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
-
-<script language="javascript" type="text/javascript">
-    $("#CategoryItemId").on('change', function () {
-        var categoryId = $(this).val();
-        $("#CategoryId").val(categoryId);
-    });
-</script>

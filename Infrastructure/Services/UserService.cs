@@ -6,6 +6,7 @@
     using Infrastructure.IServices;
     using System.Collections.Generic;
     using System.Linq;
+    using System;
 
     public class UserService : IUserService
     {
@@ -22,6 +23,36 @@
                 .Map<List<UserDTO>>(_repo
                 .GetAllRecords()
                 .ToList());
+        }
+
+        public UserDTO GetUserByEmail(string email)
+        {
+            UserDTO dto = new UserDTO();
+            if (!string.IsNullOrWhiteSpace(email))
+            {
+                dto = AutoMapper.Mapper
+                     .Map<UserDTO>(_repo
+                     .GetAllRecords()
+                     .Where(x => x.EMAIL == email)
+                     .SingleOrDefault());
+            }
+
+            return dto;
+        }
+
+        public UserDTO GetUserById(int id)
+        {
+            UserDTO dto = new UserDTO();
+            if (id != 0)
+            {
+                dto = AutoMapper.Mapper
+                     .Map<UserDTO>(_repo
+                     .GetAllRecords()
+                     .Where(x => x.ID == id)
+                     .SingleOrDefault());
+            }
+
+            return dto;
         }
 
         public void InsertUser(UserDTO dto)

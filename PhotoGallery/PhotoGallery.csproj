@@ -253,12 +253,15 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
-    <Content Include="Views\Account\GetUsers.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Album\_GetCategories.cshtml" />
     <Content Include="Views\Album\CreateAlbum.cshtml" />
     <Content Include="Views\Album\AllAlbums.cshtml" />
+    <Content Include="Views\Album\Details.cshtml" />
+    <Content Include="Views\Album\_AddPhotos.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Album\MyAlbums.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

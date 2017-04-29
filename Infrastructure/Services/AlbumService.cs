@@ -16,6 +16,21 @@
             _repo = new GenericRepository<Album>();
         }
 
+        public AlbumDTO GetAlbum(int id)
+        {
+            AlbumDTO dto = new AlbumDTO();
+            if (id != 0)
+            {
+                dto = AutoMapper.Mapper
+                     .Map<AlbumDTO>(_repo
+                     .GetAllRecords()
+                     .Where(x => x.ID == id)
+                     .SingleOrDefault());
+            }
+
+            return dto;
+        }
+
         public List<AlbumDTO> GetAllAlbums()
         {
             return AutoMapper.Mapper

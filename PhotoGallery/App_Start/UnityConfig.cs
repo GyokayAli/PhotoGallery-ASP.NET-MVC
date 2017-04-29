@@ -41,6 +41,7 @@ namespace PhotoGallery.App_Start
             // container.RegisterType<IProductRepository, ProductRepository>();
             container.RegisterType<IUserService, UserService>();
             container.RegisterType<IAlbumService, AlbumService>();
+            container.RegisterType<IPhotoService, PhotoService>();
         }
     }
 }

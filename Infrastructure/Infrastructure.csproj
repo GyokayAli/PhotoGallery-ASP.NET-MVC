@@ -51,9 +51,11 @@
   <ItemGroup>
     <Compile Include="AutoMapperConfig.cs" />
     <Compile Include="IServices\IAlbumService.cs" />
+    <Compile Include="IServices\IPhotoService.cs" />
     <Compile Include="IServices\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AlbumService.cs" />
+    <Compile Include="Services\PhotoService.cs" />
     <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>

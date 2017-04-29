@@ -30,7 +30,5 @@ namespace DataAccess
         public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<Photo> Photos { get; set; }
         public virtual DbSet<User> Users { get; set; }
-
-        
     }
 }

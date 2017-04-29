@@ -26,6 +26,13 @@
                    .ForMember(dest => dest.UserId, opts => opts.MapFrom(src => src.USER_ID))
                    .ForMember(dest => dest.CategoryId, opts => opts.MapFrom(src => src.CATEGORY_ID))
                    .ReverseMap();
+
+                cfg.CreateMap<Photo, PhotoDTO>()
+                  .ForMember(dest => dest.Id, opts => opts.MapFrom(src => src.ID))
+                  .ForMember(dest => dest.PhotoImage, opts => opts.MapFrom(src => src.PHOTO_IMG))
+                  .ForMember(dest => dest.PhotoName, opts => opts.MapFrom(src => src.PHOTO_NAME))
+                  .ForMember(dest => dest.AlbumId, opts => opts.MapFrom(src => src.ALBUM_ID))
+                  .ReverseMap();
             }
            );
         }
